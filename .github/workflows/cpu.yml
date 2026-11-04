@@ -2,6 +2,9 @@ name: CPU contracts and package
 on: [push, pull_request, workflow_dispatch]
 jobs:
   contracts:
+    env:
+      PYTHONUTF8: "1"
+      PYTHONIOENCODING: utf-8
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
