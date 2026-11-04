@@ -1,0 +1,3 @@
+# Evidence and validated source receipts use exact byte SHA256 identities.
+# Preserve bytes across Windows/Linux checkouts, including existing line endings.
+* -text

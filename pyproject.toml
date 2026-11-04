@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vl-posttrain-lab"
+version = "0.1.0"
+description = "多模态数据选择与包装主动视觉 Agent 的可审计实验工具"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = []
+
+[project.optional-dependencies]
+images = ["Pillow>=10"]
+numerical = ["numpy>=1.26"]
+inference = ["torch>=2.6", "transformers>=4.57,<5", "peft>=0.17", "Pillow>=10", "accelerate>=1"]
+
+[project.scripts]
+vl-lab = "vl_posttrain.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+exclude = ["vl_posttrain.evidence", "vl_posttrain.evidence.*"]

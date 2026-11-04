@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "download_automatically": false,
+  "sources": [
+    {
+      "id": "LLaVA",
+      "project": 1,
+      "purpose": "通用SFT候选",
+      "url": "https://github.com/haotian-liu/LLaVA",
+      "qa_and_split_review_required": true
+    },
+    {
+      "id": "Vision-R1-cold",
+      "project": 1,
+      "purpose": "推理候选，恢复底层QA金标",
+      "url": "https://huggingface.co/datasets/Osilly/Vision-R1-cold",
+      "synthetic_cot_is_native_gold": false
+    },
+    {
+      "id": "TabMWP",
+      "project": 1,
+      "purpose": "原生QA核验",
+      "url": "https://github.com/lupantech/PromptPG"
+    },
+    {
+      "id": "Unitail-OCR_gallery",
+      "project": 2,
+      "purpose": "包装文字区域候选，不是现成12K QA",
+      "url": "https://unitedretail.github.io/Unitail-OCR/",
+      "academic_only": true,
+      "raw_images_packaged": false,
+      "adapter": "reviewed_region_export",
+      "native_qa": false,
+      "gallery_categories_upstream": 1454,
+      "gallery_text_regions_upstream": 10709,
+      "gallery_legible_transcriptions_upstream": 7565
+    },
+    {
+      "id": "RPC_exemplar_train",
+      "project": 2,
+      "purpose": "补充商品视图，需补转写、紧框、问题和家族",
+      "url": "https://rpc-dataset.github.io/",
+      "license": "CC BY-NC-SA 4.0",
+      "adapter": "rpc_coco_candidate",
+      "upstream_train_images": 53739,
+      "native_text_evidence_box": false
+    },
+    {
+      "id": "GQA_train",
+      "project": 2,
+      "purpose": "500条通用回放目标",
+      "url": "https://cs.stanford.edu/people/dorarad/gqa/",
+      "target_count": 500
+    },
+    {
+      "id": "TextVQA_train",
+      "project": 2,
+      "purpose": "500条通用回放目标",
+      "url": "https://textvqa.org/",
+      "target_count": 500
+    }
+  ],
+  "note": "公开数据来源索引与字段适配参考；原图与本地标注不随源码发布。"
+}

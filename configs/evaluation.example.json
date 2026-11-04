@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "new_packaging_test": {
+    "qa_target": 2000,
+    "test_used_for_selection": false,
+    "training_seeds": [
+      17,
+      42,
+      73
+    ],
+    "primary": "answer_correct_and_IoU_ge_0.5_and_valid_and_within_budget",
+    "bootstrap_unit": "product_family_image_connected_group",
+    "bootstrap_iterations": 2000
+  },
+  "benchmarks": [
+    {
+      "name": "MMMU",
+      "split": "val",
+      "official": "https://github.com/MMMU-Benchmark/MMMU",
+      "score": "official_multiple_choice_and_open_answer",
+      "status": "protocol_reference_not_full_evaluation"
+    },
+    {
+      "name": "MathVista",
+      "split": "testmini",
+      "official": "https://github.com/lupantech/MathVista",
+      "score": "official_extraction_and_normalization",
+      "status": "protocol_reference_not_full_evaluation"
+    },
+    {
+      "name": "AI2D",
+      "split": "test",
+      "official": "https://allenai.org/data/diagrams",
+      "score": "multiple_choice_accuracy",
+      "status": "protocol_reference_not_full_evaluation"
+    },
+    {
+      "name": "ChartQA",
+      "split": "test",
+      "official": "https://github.com/vis-nlp/ChartQA",
+      "score": "relaxed_accuracy_with_source_subset_breakdown",
+      "status": "protocol_reference_not_full_evaluation"
+    },
+    {
+      "name": "DocVQA",
+      "split": "val",
+      "official": "https://www.docvqa.org/",
+      "score": "ANLS",
+      "status": "protocol_reference_not_full_evaluation"
+    },
+    {
+      "name": "OCRBench",
+      "split": "v1",
+      "official": "https://github.com/Yuliang-Liu/MultimodalOCR",
+      "score": "official_task_specific_aggregate",
+      "status": "protocol_reference_not_full_evaluation"
+    }
+  ],
+  "repeat_crop": {
+    "root_iou_min": 0.9,
+    "area_ratio_min": 0.8,
+    "area_ratio_max": 1.25,
+    "max_effective_resolution_gain": 1.1
+  },
+  "no_exposed_cases_as_new_blind_test": true
+}

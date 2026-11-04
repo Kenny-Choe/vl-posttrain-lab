@@ -1,0 +1,31 @@
+{
+  "route_id": "posttrain-data-to-packaging-sapo-v1",
+  "provenance_kind": "target_configuration_not_executed",
+  "execution_mode": "existing_models_only_no_training",
+  "base": "Qwen/Qwen3-VL-8B-Instruct",
+  "hardware_target": {"gpu_model": "4090D", "world_size": 4, "deepspeed_stage": 2, "verified_current_hardware": false},
+  "lora_target": {"rank": 64, "alpha": 32, "sft_dropout": 0.05, "rl_dropout": 0.0, "expected_trainable_parameters": 174587904, "measured_on_current_model": false, "target_modules": ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"], "freeze_vision_mergers_base_embedding_head_norm": true},
+  "project1": {
+    "name": "多模态后训练数据工程",
+    "parent": "C0", "general_sft": 30000, "reasoning_sft": 40000,
+    "selection_ablation_each": 20000, "dpo_pairs": 40000, "grpo_train_questions": 2000,
+    "internal_dev_questions": 2000, "sft_lr": 0.0001, "sft_epochs": 1,
+    "dpo_parent": "C2", "grpo_parent": "C2", "selection_parent": "C1",
+    "visual_score_model": "C0", "visual_mixture_high_fraction": 0.5,
+    "dpo_beta": 0.1, "dpo_lr": 0.000005, "dpo_global_pairs": 32, "dpo_updates": 1250,
+    "grpo_fresh_batches": 500, "grpo_reuse": 4, "grpo_updates": 2000,
+    "benchmark_splits": {"MMMU": "val", "MathVista": "testmini", "AI2D": "test", "ChartQA": "test", "DocVQA": "val", "OCRBench": "v1"}
+  },
+  "project2": {
+    "name": "包装细节主动视觉 Agent",
+    "parent": "C0", "reference": "P2-SFT", "qa_target": 12000,
+    "split_counts": {"train": 8000, "dev": 2000, "test": 2000},
+    "max_qa_per_image": 4, "family_and_image_group_isolation": true,
+    "sources": ["Unitail-OCR_gallery", "RPC_exemplar_train"],
+    "curriculum": {"domain_localization": 4000, "domain_search_stop": 4000, "general_replay": 1000, "replay_sources": {"GQA_train": 500, "TextVQA_train": 500}, "world_size": 4, "micro_batch": 1, "accumulation": 9, "epochs_per_stage": 2, "lr": 0.0001, "optimizer_and_scheduler_continuous": true, "total_updates": 500},
+    "budgets": {"crop_calls": 3, "generated_tokens": 2048, "initial_visual_tokens": 768, "crop_visual_tokens": 384, "new_visual_tokens": 2048, "context_tokens": 6144},
+    "coordinate_protocol": "view_id_local_0_1000_root_floor_ceil_exclusive",
+    "reward": {"version": "target", "answer": 1.0, "answer_gated_iou": 0.5, "terminal_distance": 0.05, "once_at_terminal": true},
+    "rl": {"world_size": 4, "micro_batch": 1, "accumulation": 8, "questions_per_batch": 4, "group_size": 8, "fresh_batches": 1000, "reuse": 4, "updates": 4000, "seeds": [17, 42, 73], "lr": 0.000005, "beta_kl": 0.04, "weight_decay": 0.0, "warmup_fraction": 0.03, "schedule": "constant_after_warmup", "advantage_std": "population", "advantage_epsilon": 0.00000001, "epsilon": 0.2, "tau_pos": 1.0, "tau_neg": 1.05, "temperature_schedule": false, "sampling": {"temperature": 1.0, "top_p": 1.0, "top_k": 0, "min_p": 0.0, "repetition_penalty": 1.0}, "keep_zero_variance_groups": true, "final_update_preselected": 4000, "only_algorithm_difference": "surrogate"}
+  }
+}

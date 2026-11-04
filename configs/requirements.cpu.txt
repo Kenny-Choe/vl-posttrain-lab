@@ -1,0 +1,7 @@
+# 可选processor和CPU组件参考环境；具体安装方式见docs/reproduction.md。
+torch==2.8.0
+torchvision==0.23.0
+transformers==4.57.1
+peft==0.17.1
+numpy<3
+Pillow<13

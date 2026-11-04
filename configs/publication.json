@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "purpose": "只发布可复用代码、测试、参数示例与技术文档；个人学习和实验材料留在本地",
+  "recursive_directories": {"src": [".py"], "tests": [".py"], ".github": [".yml", ".yaml"]},
+  "excluded_paths": ["src/vl_posttrain/evidence", "tests/test_artifacts.py"],
+  "exact_files": [
+    "README.md", "LICENSE", "pyproject.toml", ".gitignore", ".gitattributes", "CHANGELOG.md", "CITATION.cff",
+    "configs/publication.json", "configs/route.target.json", "configs/sources.example.json",
+    "configs/evaluation.example.json", "configs/deepspeed.zero2.reference.json", "configs/requirements.cpu.txt",
+    "docs/route.md", "docs/methods.md", "docs/reproduction.md", "docs/data_release.md",
+    "docs/curriculum.md", "docs/data_card.md", "docs/model_card.md",
+    "tools/package_release.py", "tools/verify.py", "tools/verify_installed.py"
+  ],
+  "result_tables_published": false,
+  "personal_materials_published": false,
+  "weights_or_raw_images_published": false
+}

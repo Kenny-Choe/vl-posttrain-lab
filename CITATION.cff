@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "如使用本项目，请引用项目代码，并分别引用SAPO及上游数据。"
+title: "VL PostTrain Lab"
+authors:
+  - name: "VL PostTrain Lab contributors"
+type: software
+version: 0.1.0
+date-released: 2026-11-04
+license: MIT
